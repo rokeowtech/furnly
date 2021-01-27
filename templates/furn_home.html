@@ -1,0 +1,70 @@
+{% extends 'layout.html'%}
+{% load static %}
+{% block content %}
+<h4 class="container center" style="color:maroon;padding:10px;">Store Collection</h4>
+<!-- <div class="carousel">
+    <a class="carousel-item" href="#one!"><img src="{% static 'Awesome.jpeg' %}"></a>
+    <a class="carousel-item" href="#two!"><img src="{% static 'Big.jpeg' %}"></a>
+    <a class="carousel-item" href="#three!"><img src="{% static 'Bang.JPG' %}"></a>
+    <a class="carousel-item" href="#four!"><img src="{% static 'tel.jpg' %}"></a>
+    <a class="carousel-item" href="#five!"><img src="{% static 'Intell.jpg' %}"></a>
+
+  </div> -->
+
+
+
+{% if products %}
+<div class="products row container">
+	{% for product in products %}
+
+       <div class="card sticky-action col s12 l4" style="width:30%;">
+         <div><a href="{% url 'productsByProducer' product.Producer %}">{{ product.Producer }}</a></div>
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="responsive-img materialboxed" src="{{ product.ProductThumb.url }}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{ product.ProductName }}<i class="material-icons right">more_vert</i></span>
+          <p><a href="#"> </a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{ product.ProductName }}<i class="material-icons right">close</i></span>
+          <p>{{ product.ProductDescription }}</p>
+        </div>
+            <div class="card-action">
+            <span>{{ product.ProductContact }}</span>
+            <span class="right">Kshs. {{ product.ProductPrice }}</span>
+            <a href="" class="btn-small orange">Buy</a>
+            </div>
+
+      </div>
+
+
+	{% endfor %}</div>
+	<div class="container center">
+	{% if is_paginated %}
+		{% if page_obj.has_previous %}
+		<a href="?page=1">First</a>
+		<a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+		{% endif %}
+
+		{% for num in page_obj.paginator.page_range %}
+			{% if page_obj.number == num %}
+			<a href="?page={{num}}">{{num}}</a>
+			{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+
+			<a href="?page={{num}}">{{num}}</a>
+
+			{% endif %}
+		{% endfor %}
+
+		{% if page_obj.has_next %}
+		<a href="?page={{ page_obj.next_page_number }}">Next </a>
+		<a href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+		{% endif %}
+
+	{% endif %}
+	</div>
+{% else %}
+	<div class="container"><h5 style="border: 2px solid aqua; padding: 5px; color: maroon; text-align: center; border-radius: 10px; "> No Products Added Yet</h5></div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'layout.html'%}
+{% block content %}
+<div class="container">
+	<h6 style="border:2px solid aqua; padding: 5px; border-radius: 10px; text-align: center;">You have been logged Out</h6>
+	<a href="{% url 'login' %}">LogIn Again</a>
+</div>
+
+{% endblock %}

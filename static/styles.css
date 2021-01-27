@@ -1,0 +1,19 @@
+@media only screen and (max-width: 470px) {
+      .product{padding:10px;}
+      .helptext{display:none;}
+}
+@media only screen and (min-width: 470px) {
+    body{
+
+    }
+    .products{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .product{
+        width: 300px;
+        padding:10px;
+    }
+    .helptext{display:none;}
+}

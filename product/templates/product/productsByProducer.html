@@ -1,0 +1,29 @@
+{% extends 'layout.html'%}
+{% block content %}
+{% if products %}
+	{% for product in products %}
+	<!--<p>{{ product.Producer.email }}</p>-->
+	<div class="card product">
+		<div class="prohead">
+                  {% if product.Producer == user %}
+                    <a class="btn-small orange" href="{% url 'product_update' product.id %}">Update</a>
+                    <a class="btn-small red" href="{% url 'product_delete' product.id %}">Delete</a>
+                  {%else%}<span></span>
+                  {% endif %}
+			</div>
+		<div>
+			<img class="responsive-img materialboxed" src="{{ product.ProductThumb.url }}">
+<p>{{ product.ProductName }}:  {{ product.ProductDescription }}</p>
+		</div>
+		<div class="card-action">
+			<span> {{ product.ProductContact }}</span>
+			<span class="right">Kshs. {{ product.ProductPrice }}</span>
+		</div>
+	</div>
+
+
+	{% endfor %}
+{% else %}
+	<h5 style="border: 2px solid aqua; padding: 5px; color: maroon; text-align: center; border-radius: 10px; "> No Products Added Yet</h5>
+{% endif %}
+{% endblock %}

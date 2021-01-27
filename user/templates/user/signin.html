@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container login_form">
+	<form method="POST">
+	{% csrf_token %}
+	{{ form }}
+	<input class="btn-small" type="submit" name="Sign In">
+
+</form></div>
+
+{% endblock %}

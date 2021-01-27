@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container signup_form">
+	<form method="POST">
+	{% csrf_token %}
+	{{ form }}
+	<input class="btn-small" type="submit" value="Register">
+</form>
+</div>
+
+
+{% endblock %}

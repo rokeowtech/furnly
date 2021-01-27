@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<h2>Are you sure you want to delete '{{ object.ProductName }}'</h2>
+	<input class="btn-small red" type="submit" value="Yes, Delete">
+	<a class="btn-small" href="{% url 'product_detail' object.id %}">Cancel</a>
+</form>
+</div>
+{% endblock %}
